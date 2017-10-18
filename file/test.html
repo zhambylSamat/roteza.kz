@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Roteza</title>
+
+
+	<link rel="shortcut icon" href="faviconyp.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet/less" type='text/css' href="css/style.less">
+    <style type="text/css">
+        html,body{
+            margin:0;
+            padding:0;
+            width: 100%;
+            height: 100%;
+        }
+        form input{
+        }
+        .abc{
+            display:inline-block;
+            border:1px solid black;
+            background-color: red;
+            width: 40%;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class='container-fluid'>
+            <div class='row'>
+                <center>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <form method='post' action='abc.php'>
+                            <div class='form_question'>
+                                <div id='q1' class='question'>
+                                    <input type="text" name="question[]" placeholder="Write your question" required="Plese write your answer">
+                                    <div class='bl'>
+                                        <input type="text" name="ans[0][]" required="Must be written something">
+                                        <input type="checkbox" name="ch[0][]">
+                                    </div>
+                                    <div class='bl'>
+                                        <input type="text" name="ans[0][]" required="Must be written something">
+                                        <input class='ch' type="checkbox" name="ch[0][]">
+                                    </div>
+                                    <input id='add_ans' type="button" name="btn" value='Add answer' onclick="addAns(1)">
+                                </div>
+                                <!-- <input name="abc1[]" type='text' value='answer1'>
+                                <input name="abc1[]" type='text' value='answer2'>
+
+
+                                <input name="abc2[]" type='text' value='answer1'>
+                                <input name="abc2[]" type='text' value='answer2'> -->
+
+                                <input type="button" id='add_question' name="add_q" value='Add new quesiton' onclick='addQuestion()'>
+                                <input type="submit" name="" value='submit'>
+                            </div>
+                        </form>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </section>
+
+	<script type="text/javascript" src="js/less.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/story-box.min.js'></script>
+    <script src='js/story-box-uncompressed.js'></script>
+    <script type="text/javascript">
+        // var count_ans = 3;
+        var count_question = 1;
+        function addAns(x){
+            $(function(){
+                $("#q"+x+" #add_ans").before("<div class='bl'><input type='text' name='ans["+(x-1)+"][]'><input class='ch' type='checkbox' name='ch["+(x-1)+"][]' required='Must be written something'></div>")
+            });
+        }
+        function addQuestion(){
+            count_question++;
+            
+
+            $(function(){
+                $("#add_question").before("<div id='q"+count_question+"'' class='question'><input type='text'name='question[]' placeholder='Write your question'><div class='bl'><input type='text' name='ans["+(count_question-1)+"][]' required='Must be written something'><input type='checkbox' name='ch["+(count_question-1)+"][]'></div><div class='bl'><input type='text' name='ans["+(count_question-1)+"][]' required='Must be written somethin'><input class='ch' type='checkbox' name='ch["+(count_question-1)+"][]'></div><input id='add_ans' type='button' name='btn' value='Add answer' onclick='addAns("+count_question+")'></div>")
+            });
+
+               
+        }
+    </script>
+</body>
+</html>

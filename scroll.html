@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Roteza</title>
+
+
+	<link rel="shortcut icon" href="faviconyp.png">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="rs-plugin/css/settings.css">
+
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/story-box-zen.css">
+    <link rel="stylesheet/less" type='text/css' href="css/style.less">
+
+    <link rel="stylesheet" type='text/css' href="css/font-awesome.min.css">
+</head>
+<body>
+    <section id='imgs'>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div id='fix' class='col-md-12 col-sm-12 col-xs-12'>
+                    <center><h1>Scroll down</h1></center>
+                </div>
+                <div id='img1' class='col-md-12 col-sm-12 col-xs-12'>
+                    <img src="img/bg1.jpg">
+                </div>
+                <div id='img2' class='col-md-12 col-sm-12 col-xs-12'>
+                    <img src="img/bg2.jpg">
+                </div>
+                <div id='img3' class='col-md-12 col-sm-12 col-xs-12'>
+                    <img src="img/bg3.png">
+                </div>
+                <div id='img4' class='col-md-12 col-sm-12 col-xs-12'>
+                    <img src="img/test.png">
+                </div>
+                <div style='height:2000px;' class='col-md-12 col-sm-12 col-xs-12'>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<script type="text/javascript" src="js/less.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/story-box.min.js'></script>
+    <script src='js/story-box-uncompressed.js'></script>
+
+	<script src='js/scripts.js'></script>
+    <script src='js/placeholdem.min.js'></script>
+    <script src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src='js/waypoints.min.js'></script>
+    <script src='js/slick.min.js'></script>
+
+    <script src="greensock-js/src/uncompressed/jquery.gsap.js"></script>
+    <script src="greensock-js/src/uncompressed/TweenMax.js"></script>
+    <script type="text/javascript">
+        var torf = true;
+        var torf2 = true;
+        var torf3 = true;
+        var torf4 = true;
+        var vv = true;
+        $(document).scroll(function() {
+            var y = $(this).scrollTop();
+            var y0 = $('#fix').position();
+            var h0 = $('#fix').height();
+            var y1 = $('#img1').position();
+            var h1 = $('#img1').height();
+            var dy1 = y1.top-y;
+            var ry1 = dy1+h1;
+            var y2 = $('#img2').position();
+            var dy2 = y2.top-y;
+            var h2 = $('#img2').height();
+            var y3 = $('#img3').position();
+            var dy3 = y3.top-y;
+            var h3 = $('#img3').height();
+            var y4 = $('#img4').position();
+            var dy4 = y4.top-y;
+            var h4 = $('#img4').height();
+            // var h1 = $('#img1').height();
+            // console.log("#img3 : "+dy3);
+            if(dy1<=0  && torf){
+                torf = false;
+                $("#img1").css({'position':'fixed', 'top':'0','left':'0','z-index':'10','padding':'0'});
+                if ($('#img1temp').length==0){
+                    $('#img1').after('<div id="img1temp" style="position:static; width:100%; height:'+(h1+$('#fix').height())+'px;"></div>');
+                }
+            }
+            if(dy2<=h1 && torf2){
+                $("#img2").css({'position':'relative', 'z-index':'20'});   
+            }
+            if(dy2<=0 && torf2){
+                torf2 = false;
+                $("#img2").css({'position':'fixed', 'top':'0','left':'0','z-index':'20','padding':'0'});
+                if ($('#img2temp').length==0){
+                    $('#img2').after('<div id="img2temp" style="width:100%; height:'+h2+'px;"></div>');  
+                }
+            }
+            if(dy3<=h2 && torf3){
+                $("#img3").css({'position':'relative','z-index':'30'});
+                $("#img4").css({'position':'relative','z-index':'25','margin-top':'-'+($('#img3').height())+'px'});
+            }
+            if(dy3<=0 && torf3){
+                torf3 = false;
+                $("#img3").css({'position':'fixed', 'top':'0','left':'0','z-index':'30','padding':'0'});
+            }
+            if(dy4<=h3){
+                // torf4 = false;
+                $("#img4").css({'position':'relative','z-index':'25','margin-top':'0px'});   
+            }
+            if ((h0+y0.top-y)>0 && torf == false){
+                torf = true;
+                $("#img1").css({'position':'static'});   
+                $("#img1temp").remove();
+            }
+            if((h1-y+h0)>0 && torf2 == false){
+                torf2 = true;
+                $("#img2").css({'position':'static'});   
+                $("#img2temp").remove();
+            }
+            if((h1-y+h0+h2)>0 && torf3 == false){
+                torf3 = true;
+                // torf4 = true;
+                // $("#img4").css({'position':'relative','z-index':'25','margin-    top':''+($('#img3').height())+'px'});
+                $("#img3").css({'position':'static'});
+            }
+
+            // var y1 = $("#services2").position();
+            // var y2 = $("#about").position();
+            // var y3 = $("#price").position();
+            // var w1 = $("#services").height();
+            // var y4 = $("#services").position();
+            // console.log("width : "+w1);
+            // console.log("Top #services2: " + (y1.top-y));
+            // console.log("Top #about: " + (y2.top-y));
+            // console.log(torf);
+            // var el1y = y1.top-y;
+            // var el2y = y2.top-y;
+            // var el4y = y4.top-y+w1;
+            // if(el1y<=0 && torf){
+            //     $('#services2').css({'position':'fixed','top':'0','left':'0','z-index':'10000','width':'100%','background':'none'});
+            //     if ($('#services2temp').length==0)
+            //     {
+            //         $('#services2').after('<div id="services2temp" style="background:url(\'img/about_bg.jpg\') center top/cover no-repeat; width:100%; height:'+($("#services2").height())+'px;"></div>');
+            //     }
+            //     console.log("Top #price: " + (y3.top-y));
+            // }
+            // if(el2y<=0){
+            //     torf = false;
+            //     $('#services2').css({'position':'static','z-index':'0','margin-top':'0px','margin':'0','background':"url('img/about_bg.jpg') center top/cover no-repeat" });
+            //     $('#services2temp').remove();
+            // }
+            // else if(el4y>0){
+            //     torf = true;
+            //     $('#services2').css({'position':'static','z-index':'0','background':"url('img/about_bg.jpg') center top/cover no-repeat"});
+            //     $('#services2temp').remove();
+            // }
+          
+          // console.log(y);
+        });
+    </script>
+</body>
+</html>
